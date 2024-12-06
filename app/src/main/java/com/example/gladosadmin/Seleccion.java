@@ -30,8 +30,20 @@ public class Seleccion extends AppCompatActivity {
         binding = ActivitySeleccionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Configurar la barra de herramientas (toolbar)
         setSupportActionBar(binding.appBarSeleccion.toolbar);
 
+        // Configurar el botón de acción flotante (opcional)
+        binding.appBarSeleccion.toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Acción personalizada aquí", Snackbar.LENGTH_LONG)
+                        .setAction("Acción", null)
+                        .setAnchorView(R.id.toolbar).show();
+            }
+        });
+
+        // Configuración del DrawerLayout y NavigationView
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
@@ -42,14 +54,15 @@ public class Seleccion extends AppCompatActivity {
         // Actualizar el header del Navigation Drawer
         View headerView = navigationView.getHeaderView(0);
         TextView headerSubtitle = headerView.findViewById(R.id.nav_header_subtitle);
+        headerSubtitle.setText(adminName);  // Establecer el nombre del administrador
 
-        headerSubtitle.setText(adminName);
-
-        // Configuración de navegación
+        // Configuración de destinos de navegación
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_usuarios, R.id.nav_consejos)
+                R.id.nav_usuarios, R.id.nav_consejos) // IDs de tus destinos
                 .setOpenableLayout(drawer)
                 .build();
+
+        // Configurar el NavController
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_seleccion);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
