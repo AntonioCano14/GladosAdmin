@@ -4,34 +4,60 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gladosadmin.databinding.FragmentConsejosBinding;
+import com.example.gladosadmin.ApiService;
+import com.example.gladosadmin.R;
+import com.example.gladosadmin.Consejo;
+import com.example.gladosadmin.RetrofitClient;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ConsejosFragment extends Fragment {
 
-    private FragmentConsejosBinding binding;
+    private RecyclerView recyclerViewConsejos;
+    private ConsejoAdapter consejoAdapter;
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ConsejosViewModel galleryViewModel =
-                new ViewModelProvider(this).get(ConsejosViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_consejos, container, false);
 
-        binding = FragmentConsejosBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        recyclerViewConsejos = root.findViewById(R.id.recyclerViewConsejos);
+        recyclerViewConsejos.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        cargarConsejos();
+
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    private void cargarConsejos() {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        Call<List<Consejo>> call = apiService.getAllConsejos();
+
+        call.enqueue(new Callback<List<Consejo>>() {
+            @Override
+            public void onResponse(Call<List<Consejo>> call, Response<List<Consejo>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Consejo> consejos = response.body();
+                    consejoAdapter = new ConsejoAdapter(consejos);
+                    recyclerViewConsejos.setAdapter(consejoAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Consejo>> call, Throwable t) {
+                // Manejo de errores
+                t.printStackTrace();
+            }
+        });
     }
 }
