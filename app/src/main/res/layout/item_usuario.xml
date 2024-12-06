@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:padding="8dp">
 
+    <!-- Información principal del usuario -->
     <TextView
         android:id="@+id/textNombre"
         android:layout_width="wrap_content"
@@ -13,10 +14,68 @@
         android:textStyle="bold"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/textCorreo"
-        android:layout_width="wrap_content"
+    <!-- Layout expandible -->
+    <LinearLayout
+        android:id="@+id/layoutExpandible"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Correo del usuario"
-        android:textSize="14sp" />
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/textCorreo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correo:"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contraseña:"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID Usuario:"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textFechaRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha de Registro:"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textUltimaSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Última Sesión:"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textRedSocial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red Social ID:"
+            android:textSize="14sp" />
+
+        <!-- Botones -->
+        <Button
+            android:id="@+id/btnEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar" />
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar" />
+    </LinearLayout>
 </LinearLayout>

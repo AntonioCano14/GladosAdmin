@@ -1,17 +1,29 @@
 package com.example.gladosadmin;
 
-import java.io.Serializable;
+import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
-// User.java (en el lado de Android)
-public class User implements Serializable {
+public class User {
 
+    @SerializedName("id_user")
     private int ID_user;
+
+    @SerializedName("nombre_user")
     private String nombre_user;
+
+    @SerializedName("correo_user")
     private String correoUser;
+
+    @SerializedName("password_user")
     private String password_user;
+
+    @SerializedName("fecha_registro")
     private Date fecha_registro;
+
+    @SerializedName("ultima_sesion")
     private Date Ultima_sesion;
+
+    @SerializedName("redSocial_ID_Social")
     private int RedSocial_ID_Social;
 
     // Getters y setters
@@ -71,4 +83,3 @@ public class User implements Serializable {
         this.RedSocial_ID_Social = redSocial_ID_Social;
     }
 }
-
