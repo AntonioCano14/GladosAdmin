@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:padding="8dp">
 
+    <!-- Información principal -->
     <TextView
         android:id="@+id/textDescripcion"
         android:layout_width="wrap_content"
@@ -13,10 +14,41 @@
         android:textStyle="bold"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/textTipo"
-        android:layout_width="wrap_content"
+    <!-- Layout expandible -->
+    <LinearLayout
+        android:id="@+id/layoutExpandible"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tipo de consejo"
-        android:textSize="14sp" />
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingTop="8dp">
+
+        <!-- ID del consejo -->
+        <TextView
+            android:id="@+id/textIdConsejo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID Consejo: 1"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de consejo"
+            android:textSize="14sp" />
+
+        <!-- Botones -->
+        <Button
+            android:id="@+id/btnEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar" />
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar" />
+    </LinearLayout>
 </LinearLayout>
