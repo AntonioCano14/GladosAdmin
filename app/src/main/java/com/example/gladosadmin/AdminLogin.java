@@ -61,7 +61,7 @@ public class AdminLogin extends AppCompatActivity {
 
                             guardarSesion(userId, userName); // Guardar la sesión
                             Toast.makeText(AdminLogin.this, "Login exitoso", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AdminLogin.this, MainActivity.class));
+                            startActivity(new Intent(AdminLogin.this, Seleccion.class));
                         } else {
                             Toast.makeText(AdminLogin.this, jsonResponse, Toast.LENGTH_SHORT).show();
                         }

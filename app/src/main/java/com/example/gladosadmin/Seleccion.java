@@ -1,8 +1,10 @@
 package com.example.gladosadmin;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -29,26 +31,30 @@ public class Seleccion extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarSeleccion.toolbar);
-        binding.appBarSeleccion.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .setAnchorView(R.id.fab).show();
-            }
-        });
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
+        // Cargar datos del administrador desde SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        String adminName = sharedPreferences.getString("nombre_user", "Administrador");
+
+        // Actualizar el header del Navigation Drawer
+        View headerView = navigationView.getHeaderView(0);
+        TextView headerSubtitle = headerView.findViewById(R.id.nav_header_subtitle);
+
+        headerSubtitle.setText(adminName);
+
+        // Configuración de navegación
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_usuarios, R.id.nav_consejos)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_seleccion);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
