@@ -71,8 +71,16 @@ public class Seleccion extends AppCompatActivity {
         // Verificar si se debe redirigir a un fragmento específico
         Intent intent = getIntent();
         String fragmentToLoad = intent.getStringExtra("fragment");
-        if (fragmentToLoad != null && fragmentToLoad.equals("usuarios")) {
-            navController.navigate(R.id.nav_usuarios);
+        if (fragmentToLoad != null) {
+            switch (fragmentToLoad) {
+                case "usuarios":
+                    navController.navigate(R.id.nav_usuarios);
+                    break;
+                case "consejos":
+                    navController.navigate(R.id.nav_consejos);
+                    break;
+                // Otros casos si necesitas manejar otros fragmentos
+            }
         }
     }
 

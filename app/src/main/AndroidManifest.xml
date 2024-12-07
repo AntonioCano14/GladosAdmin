@@ -16,6 +16,9 @@
         android:theme="@style/Theme.GladosAdmin"
         tools:targetApi="31">
         <activity
+            android:name=".ui.gallery.EditarConsejoActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditarUsuarioActivity"
             android:exported="false" />
         <activity

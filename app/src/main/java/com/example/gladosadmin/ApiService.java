@@ -29,10 +29,24 @@ public interface ApiService {
             @Query("adminId") int adminId
     );
 
-    @PUT("api/users/{id}/delete")
+    @PUT("/api/users/{id}/delete")
     Call<ResponseBody> eliminarUsuario(
             @Path("id") int userId,      // ID del usuario a eliminar
             @Query("adminId") int adminId // ID del administrador que realiza la acción
     );
+
+    @PUT("/api/consejos/{id}")
+    Call<ResponseBody> actualizarConsejo(
+            @Path("id") int consejoId,
+            @Body Consejo consejoActualizado,
+            @Query("adminId") int adminId
+    );
+
+    @PUT("/api/consejos/{id}/delete")
+    Call<ResponseBody> eliminarConsejo(
+            @Path("id") int consejoId,          // ID del consejo a eliminar
+            @Query("adminId") int adminId       // ID del administrador que realiza la acción
+    );
+
 }
 
