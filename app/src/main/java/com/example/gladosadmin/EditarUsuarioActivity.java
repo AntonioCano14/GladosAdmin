@@ -59,15 +59,17 @@ public class EditarUsuarioActivity extends AppCompatActivity {
         String correo = editCorreo.getText().toString().trim();
         String password = editPassword.getText().toString().trim();
 
-        if (nombre.isEmpty() || correo.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+        if (nombre.isEmpty() || correo.isEmpty()) {
+            Toast.makeText(this, "Nombre y correo son obligatorios", Toast.LENGTH_SHORT).show();
             return;
         }
 
         User usuarioActualizado = new User();
         usuarioActualizado.setNombre_user(nombre);
         usuarioActualizado.setCorreoUser(correo);
-        usuarioActualizado.setPassword_user(password);
+        if (!password.isEmpty()) { // Solo establece la contraseña si no está vacía
+            usuarioActualizado.setPassword_user(password);
+        }
 
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
         Call<ResponseBody> call = apiService.actualizarUsuario(userId, usuarioActualizado, adminId);

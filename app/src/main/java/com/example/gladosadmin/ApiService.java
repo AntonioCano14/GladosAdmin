@@ -29,6 +29,10 @@ public interface ApiService {
             @Query("adminId") int adminId
     );
 
-
+    @PUT("api/users/{id}/delete")
+    Call<ResponseBody> eliminarUsuario(
+            @Path("id") int userId,      // ID del usuario a eliminar
+            @Query("adminId") int adminId // ID del administrador que realiza la acción
+    );
 }
 
