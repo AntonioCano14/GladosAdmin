@@ -1,6 +1,7 @@
 package com.example.gladosadmin.ui.home;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.gladosadmin.EditarUsuarioActivity;
 import com.example.gladosadmin.R;
 import com.example.gladosadmin.User;
 import java.util.List;
@@ -57,8 +60,14 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
 
         // Botones
         holder.btnEditar.setOnClickListener(v -> {
-            // Lógica para editar el usuario
+            Intent intent = new Intent(v.getContext(), EditarUsuarioActivity.class);
+            intent.putExtra("userId", usuario.getID_user());
+            intent.putExtra("nombre", usuario.getNombre_user());
+            intent.putExtra("correo", usuario.getCorreoUser());
+            intent.putExtra("password", usuario.getPassword_user());
+            v.getContext().startActivity(intent);
         });
+
 
         holder.btnEliminar.setOnClickListener(v -> {
             // Lógica para eliminar el usuario

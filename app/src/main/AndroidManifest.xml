@@ -16,6 +16,9 @@
         android:theme="@style/Theme.GladosAdmin"
         tools:targetApi="31">
         <activity
+            android:name=".EditarUsuarioActivity"
+            android:exported="false" />
+        <activity
             android:name=".Seleccion"
             android:exported="false"
             android:label="@string/title_activity_seleccion"

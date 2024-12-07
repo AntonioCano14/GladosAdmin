@@ -1,5 +1,6 @@
 package com.example.gladosadmin;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -66,6 +67,13 @@ public class Seleccion extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_seleccion);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        // Verificar si se debe redirigir a un fragmento específico
+        Intent intent = getIntent();
+        String fragmentToLoad = intent.getStringExtra("fragment");
+        if (fragmentToLoad != null && fragmentToLoad.equals("usuarios")) {
+            navController.navigate(R.id.nav_usuarios);
+        }
     }
 
 

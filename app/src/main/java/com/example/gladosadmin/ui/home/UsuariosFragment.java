@@ -15,6 +15,7 @@ import com.example.gladosadmin.R;
 import com.example.gladosadmin.RetrofitClient;
 import com.example.gladosadmin.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,6 +26,7 @@ public class UsuariosFragment extends Fragment {
 
     private RecyclerView recyclerViewUsuarios;
     private UsuarioAdapter usuarioAdapter;
+    private List<User> usuarios;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -34,9 +36,20 @@ public class UsuariosFragment extends Fragment {
         recyclerViewUsuarios = root.findViewById(R.id.recyclerViewUsuarios);
         recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        usuarios = new ArrayList<>();
+        usuarioAdapter = new UsuarioAdapter(usuarios);
+        recyclerViewUsuarios.setAdapter(usuarioAdapter);
+
         cargarUsuarios();
 
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Recargar la lista de usuarios cuando el fragmento sea visible
+        cargarUsuarios();
     }
 
     private void cargarUsuarios() {
