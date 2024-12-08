@@ -48,5 +48,8 @@ public interface ApiService {
             @Query("adminId") int adminId       // ID del administrador que realiza la acción
     );
 
+    @POST("/api/register")
+    Call<ResponseBody> registrarUsuario(@Body User user);
+
 }
 

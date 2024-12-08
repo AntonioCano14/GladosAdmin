@@ -3,6 +3,7 @@ package com.example.gladosadmin;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -91,6 +93,28 @@ public class Seleccion extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.seleccion, menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_user) {
+            // Redirigir a la actividad de creación de usuario
+            Intent intent = new Intent(this, CrearUsuarioActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.action_tip) {
+            // Redirigir a la actividad de creación de consejo
+            Intent intent = new Intent(this, CrearConsejoActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {
