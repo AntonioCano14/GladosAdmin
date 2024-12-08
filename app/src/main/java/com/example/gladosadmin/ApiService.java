@@ -51,5 +51,8 @@ public interface ApiService {
     @POST("/api/register")
     Call<ResponseBody> registrarUsuario(@Body User user);
 
+    @POST("/api/register/consejos")
+    Call<ResponseBody> registrarConsejo(@Body Consejo consejo);
+
 }
 

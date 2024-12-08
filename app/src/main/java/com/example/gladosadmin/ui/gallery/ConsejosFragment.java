@@ -39,6 +39,12 @@ public class ConsejosFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        cargarConsejos(); // Método que llama al backend para cargar los consejos
+    }
+
     private void cargarConsejos() {
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
         Call<List<Consejo>> call = apiService.getAllConsejos();
