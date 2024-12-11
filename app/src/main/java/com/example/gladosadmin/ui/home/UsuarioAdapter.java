@@ -19,6 +19,8 @@ import com.example.gladosadmin.R;
 import com.example.gladosadmin.RetrofitClient;
 import com.example.gladosadmin.Seleccion;
 import com.example.gladosadmin.User;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -32,11 +34,17 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
     private SparseBooleanArray expandState = new SparseBooleanArray();
 
     public UsuarioAdapter(List<User> usuarios) {
-        this.usuarios = usuarios;
-        for (int i = 0; i < usuarios.size(); i++) {
-            expandState.put(i, false); // Inicialmente todos los elementos están colapsados
+        this.usuarios = new ArrayList<>();
+        for (User usuario : usuarios) {
+            if (!usuario.getNombre_user().startsWith("ELIMINADO")) {
+                this.usuarios.add(usuario);
+            }
+        }
+        for (int i = 0; i < this.usuarios.size(); i++) {
+            expandState.put(i, false); // Inicializar estados colapsados solo para usuarios válidos
         }
     }
+
 
     @NonNull
     @Override

@@ -19,6 +19,7 @@ import com.example.gladosadmin.RetrofitClient;
 import com.example.gladosadmin.Seleccion;
 
 import java.text.BreakIterator;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -32,8 +33,14 @@ public class ConsejoAdapter extends RecyclerView.Adapter<ConsejoAdapter.ConsejoV
     private List<Consejo> consejos;
 
     public ConsejoAdapter(List<Consejo> consejos) {
-        this.consejos = consejos;
+        this.consejos = new ArrayList<>();
+        for (Consejo consejo : consejos) {
+            if (!consejo.getDescripcionConsejo().startsWith("ELIMINADO")) {
+                this.consejos.add(consejo);
+            }
+        }
     }
+
 
     @NonNull
     @Override
